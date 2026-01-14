@@ -1,4 +1,4 @@
-package com.example.EcomarketAPIgerente.repositories.entities;
+package com.example.EcomarketAPIgerente.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

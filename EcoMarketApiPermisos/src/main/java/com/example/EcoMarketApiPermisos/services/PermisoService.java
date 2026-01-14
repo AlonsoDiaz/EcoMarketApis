@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.EcoMarketApiPermisos.models.entities.Permisos;
+import com.example.EcoMarketApiPermisos.models.request.ActualizarPermisos;
 import com.example.EcoMarketApiPermisos.models.request.AgregarPermiso;
 import com.example.EcoMarketApiPermisos.repositories.PermisosRepository;
 
@@ -40,15 +41,15 @@ public class PermisoService {
         return permisosRepository.save(permiso);
     }
 
-    public Permisos actualizarPermiso(Permisos nuevo){
-        Permisos permisos = permisosRepository.findById(nuevo.getId_permiso()).orElse(null);
+    public Permisos actualizarPermiso(ActualizarPermisos nueva){
+        Permisos permisos = permisosRepository.findById(nueva.getId_permiso()).orElse(null);
         if (permisos == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Permiso no encontrado.");
  
         }else{
-            permisos.setUserId(nuevo.getUserId());
-            permisos.setCategoria(nuevo.getCategoria());
-            permisos.setAccion(nuevo.getAccion());
+            permisos.setUserId(nueva.getUserId());
+            permisos.setCategoria(nueva.getCategoria());
+            permisos.setAccion(nueva.getAccion());
 
             return permisosRepository.save(permisos);
         }

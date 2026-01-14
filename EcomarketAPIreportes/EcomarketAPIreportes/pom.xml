@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>EcoMarketApiUsuarios</artifactId>
+	<artifactId>EcomarketAPIreportes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EcoMarketApiUsuarios</name>
-	<description>Demo project for Spring Boot</description>
+	<name>EcomarketAPIreportes</name>
+	<description>reportes</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -74,22 +74,7 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.199</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux-test</artifactId>
-			<scope>test</scope>
-    	</dependency>
-
-
-
- </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>

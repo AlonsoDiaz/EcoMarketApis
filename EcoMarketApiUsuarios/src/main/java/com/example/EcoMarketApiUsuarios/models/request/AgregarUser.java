@@ -13,5 +13,8 @@ public class AgregarUser {
 
     @NotBlank
     private String password;
+
+    @NotBlank
+    private int id_permiso;
     
 }

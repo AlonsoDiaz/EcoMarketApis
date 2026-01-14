@@ -9,7 +9,7 @@ public class WebClientConfig {
 
     @Bean
     public WebClient permisoWebClient(){
-        return WebClient.builder().baseUrl("http://localhost:8080/permisos").build();
+        return WebClient.builder().baseUrl("http://localhost:8080/permiso").build();
     }
     
     

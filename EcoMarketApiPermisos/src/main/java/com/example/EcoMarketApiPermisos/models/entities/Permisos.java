@@ -15,10 +15,14 @@ public class Permisos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id_permiso;
 
-    @Column(name = "nombre", nullable = false)
-    private String nombre;
-    
+    @Column(name = "user_id", nullable = false)
+    private int userId;
+
+    @Column(name = "categoria", nullable = false)
+    private String categoria;
+
+    @Column(name = "accion", nullable = false)
+    private String accion;
 }
-

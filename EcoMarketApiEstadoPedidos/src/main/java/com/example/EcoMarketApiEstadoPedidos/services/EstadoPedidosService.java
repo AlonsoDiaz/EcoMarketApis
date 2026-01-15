@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.EcoMarketApiEstadoPedidos.models.entitites.EstadoPedido;
+import com.example.EcoMarketApiEstadoPedidos.models.dto.EnvioDto;
 import com.example.EcoMarketApiEstadoPedidos.models.dto.PedidoDto;
+import com.example.EcoMarketApiEstadoPedidos.models.entitites.EstadoPedido;
 import com.example.EcoMarketApiEstadoPedidos.models.request.ActualizarEstadoPedido;
 import com.example.EcoMarketApiEstadoPedidos.models.request.CrearEstadoPedido;
 import com.example.EcoMarketApiEstadoPedidos.repositories.EstadoPedidosRepository;
@@ -34,52 +35,117 @@ public class EstadoPedidosService {
 	}
 
 	public EstadoPedido obtenerEstadoPorId(int id) {
-		return estadoPedidosRepository.findById(id)
-			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Estado de pedido no encontrado"));
+		EstadoPedido estado = estadoPedidosRepository.findById(id).orElse(null);
+		if (estado == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estado de pedido no encontrado.");
+		}
+		return estado;
 	}
 
-	public EstadoPedido agregarEstado(CrearEstadoPedido request) {
-		validarEnvio(request.getIdEnvio());
-		validarPedido(request.getPedidoId());
-
-		EstadoPedido estadoPedido = new EstadoPedido();
-		estadoPedido.setIdEnvio(request.getIdEnvio());
-		estadoPedido.setPedidoId(request.getPedidoId());
-		estadoPedido.setEstado(request.getEstado());
-		estadoPedido.setActualizadoEn(LocalDateTime.now());
-
-		return estadoPedidosRepository.save(estadoPedido);
-	}
-
-	public EstadoPedido actualizarEstado(ActualizarEstadoPedido request) {
-		EstadoPedido existente = obtenerEstadoPorId(request.getId());
-
-		validarEnvio(request.getIdEnvio());
-		validarPedido(request.getPedidoId());
-
-		existente.setIdEnvio(request.getIdEnvio());
-		existente.setPedidoId(request.getPedidoId());
-		existente.setEstado(request.getEstado());
-		existente.setActualizadoEn(LocalDateTime.now());
-
-		return estadoPedidosRepository.save(existente);
-	}
-
-	public String eliminarEstado(int id) {
-		EstadoPedido existente = obtenerEstadoPorId(id);
-		estadoPedidosRepository.delete(existente);
-		return "Estado eliminado";
-	}
-
-	private void validarEnvio(int idEnvio) {
+	public EstadoPedido agregarEstado(CrearEstadoPedido nuevo) {
+		EnvioDto envio = null;
+		PedidoDto pedido = null;
 		try {
-			enviosWebClient.get()
-				.uri("/{id}", idEnvio)
+			envio = enviosWebClient.get()
+				.uri("/{idEnvio}", nuevo.getIdEnvio())
 				.retrieve()
-				.bodyToMono(Void.class)
+				.bodyToMono(EnvioDto.class)
 				.block();
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient envios: " + e.getMessage());
+		}
+
+		try {
+			pedido = pedidosWebClient.get()
+				.uri("/{id_pedido}", nuevo.getPedidoId())
+				.retrieve()
+				.bodyToMono(PedidoDto.class)
+				.block();
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient pedidos: " + e.getMessage());
+		}
+
+		if (envio == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Envio no encontrado.");
+		}
+		if (pedido == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido no encontrado.");
+		}
+
+		EstadoPedido estadoPedido = new EstadoPedido();
+		estadoPedido.setIdEnvio(nuevo.getIdEnvio());
+		estadoPedido.setPedidoId(nuevo.getPedidoId());
+		estadoPedido.setEstado(nuevo.getEstado());
+		estadoPedido.setActualizadoEn(LocalDateTime.now());
+		return estadoPedidosRepository.save(estadoPedido);
+	}
+
+	public EstadoPedido actualizarEstado(ActualizarEstadoPedido nuevo) {
+		EstadoPedido estado = estadoPedidosRepository.findById(nuevo.getId()).orElse(null);
+		if (estado == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estado de pedido no encontrado.");
+		}
+
+		EnvioDto envio = null;
+		PedidoDto pedido = null;
+		try {
+			envio = enviosWebClient.get()
+				.uri("/{idEnvio}", nuevo.getIdEnvio())
+				.retrieve()
+				.bodyToMono(EnvioDto.class)
+				.block();
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient envios: " + e.getMessage());
+		}
+
+		try {
+			pedido = pedidosWebClient.get()
+				.uri("/{id_pedido}", nuevo.getPedidoId())
+				.retrieve()
+				.bodyToMono(PedidoDto.class)
+				.block();
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient pedidos: " + e.getMessage());
+		}
+
+		if (envio == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Envio no encontrado.");
+		}
+		if (pedido == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido no encontrado.");
+		}
+
+		estado.setIdEnvio(nuevo.getIdEnvio());
+		estado.setPedidoId(nuevo.getPedidoId());
+		estado.setEstado(nuevo.getEstado());
+		estado.setActualizadoEn(LocalDateTime.now());
+		return estadoPedidosRepository.save(estado);
+	}
+
+	public String eliminarEstado(int id) {
+		if (estadoPedidosRepository.existsById(id)) {
+			estadoPedidosRepository.deleteById(id);
+			return "Estado eliminado.";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estado de pedido no encontrado.");
+		}
+	}
+
+	// Validaciones separadas al estilo UserService
+	private void validarEnvio(int idEnvio) {
+		EnvioDto envio;
+		try {
+			envio = enviosWebClient.get()
+				.uri("/{idEnvio}", idEnvio)
+				.retrieve()
+				.bodyToMono(EnvioDto.class)
+				.block();
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient envios: " + e.getMessage());
+		}
+
+		if (envio == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Envio no encontrado.");
 		}
 	}
 

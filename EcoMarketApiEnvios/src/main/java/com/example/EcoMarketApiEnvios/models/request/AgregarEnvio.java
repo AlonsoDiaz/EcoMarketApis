@@ -22,7 +22,7 @@ public class AgregarEnvio {
 	private Integer idTienda;
 
 	@NotNull
-	private Double costo;
+	private Integer costo;
 
 	private LocalDate fechaEstimadaEntrega;
 }

@@ -1,0 +1,24 @@
+
+
+### Crear respaldo
+POST http://localhost:7000/respaldos
+Content-Type: application/json
+
+{
+	"tipo": "FULL",
+	"descripcion": "Respaldo inicial"
+}
+
+### Listar respaldos
+GET http://localhost:7000/respaldos
+
+### Obtener respaldo por ID
+GET http://localhost:7000/respaldos/1
+
+### Restaurar respaldo
+POST http://localhost:7000/respaldos/restaurar
+Content-Type: application/json
+
+{
+	"idRespaldo": 1
+}

@@ -9,6 +9,16 @@
             "projectName": "EcomarketAPIpedido",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EcomarketApiApplication<EcomarketAPI>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.EcomarketAPI.EcomarketApiApplication",
+            "projectName": "EcomarketAPI",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

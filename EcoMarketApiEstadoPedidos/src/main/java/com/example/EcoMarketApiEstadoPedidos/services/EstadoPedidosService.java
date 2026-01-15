@@ -131,38 +131,6 @@ public class EstadoPedidosService {
 		}
 	}
 
-	// Validaciones separadas al estilo UserService
-	private void validarEnvio(int idEnvio) {
-		EnvioDto envio;
-		try {
-			envio = enviosWebClient.get()
-				.uri("/{idEnvio}", idEnvio)
-				.retrieve()
-				.bodyToMono(EnvioDto.class)
-				.block();
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient envios: " + e.getMessage());
-		}
 
-		if (envio == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Envio no encontrado.");
-		}
-	}
-
-	private void validarPedido(int pedidoId) {
-		PedidoDto pedido;
-		try {
-			pedido = pedidosWebClient.get()
-				.uri("/{id_pedido}", pedidoId)
-				.retrieve()
-				.bodyToMono(PedidoDto.class)
-				.block();
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webClient pedidos: " + e.getMessage());
-		}
-
-		if (pedido == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido no encontrado.");
-		}
-	}
+	
 }

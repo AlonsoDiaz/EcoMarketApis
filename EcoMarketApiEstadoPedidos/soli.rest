@@ -1,0 +1,32 @@
+
+@baseUrl = http://localhost:6000/estado-pedidos
+
+### Crear estado de pedido
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+	"pedidoId": 1,
+	"idEnvio": 1,
+	"estado": "EN_CAMINO"
+}
+
+### Listar todos
+GET {{baseUrl}}
+
+### Obtener por id
+GET {{baseUrl}}/1
+
+### Actualizar
+PUT {{baseUrl}}
+Content-Type: application/json
+
+{
+	"id": 1,
+	"pedidoId": 1,
+	"idEnvio": 10,
+	"estado": "ENTREGADO"
+}
+
+### Eliminar
+DELETE {{baseUrl}}/5

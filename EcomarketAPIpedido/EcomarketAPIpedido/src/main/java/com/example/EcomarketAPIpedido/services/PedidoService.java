@@ -27,6 +27,7 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setCliente(request.getCliente());
         pedido.setEstado(request.getEstado());
+        pedido.setTienda(request.getTienda());
         return pedidoRepository.save(pedido);
     }
 
@@ -34,6 +35,7 @@ public class PedidoService {
         return pedidoRepository.findById(request.getId_pedido()).map(pedido -> {
             pedido.setCliente(request.getCliente());
             pedido.setEstado(request.getEstado());
+            pedido.setTienda(request.getTienda());
             return pedidoRepository.save(pedido);
         }).orElse(null);
     }

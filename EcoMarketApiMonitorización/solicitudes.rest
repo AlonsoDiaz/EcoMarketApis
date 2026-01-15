@@ -1,2 +1,48 @@
-GET http://localhost:8082/monitorizacion HTTP/1.1 
+### Obtener todos los estados del sistema
+GET http://localhost:8082/monitorizacion HTTP/1.1
 Content-Type: application/json
+
+###
+
+### Obtener estado por ID
+GET http://localhost:8082/monitorizacion/1 HTTP/1.1
+Content-Type: application/json
+
+###
+
+### Registrar nuevo estado del sistema
+POST http://localhost:8082/monitorizacion HTTP/1.1
+Content-Type: application/json
+
+{
+    "estado": "ACTIVO",
+    "usoCpu": 45,
+    "usoMemoria": 60,
+    "mensaje": "Sistema funcionando correctamente"
+}
+
+###
+
+### Registrar estado con alta carga
+POST http://localhost:8082/monitorizacion HTTP/1.1
+Content-Type: application/json
+
+{
+    "estado": "ALERTA",
+    "usoCpu": 85,
+    "usoMemoria": 90,
+    "mensaje": "Alta carga en el sistema"
+}
+
+###
+
+### Registrar estado crítico
+POST http://localhost:8082/monitorizacion HTTP/1.1
+Content-Type: application/json
+
+{
+    "estado": "CRITICO",
+    "usoCpu": 95,
+    "usoMemoria": 98,
+    "mensaje": "Sistema en estado crítico"
+}

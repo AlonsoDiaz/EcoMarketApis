@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ActualizarTienda {
-    @NotNull private int id;
+    @NotNull private int idTienda;
 
     @NotBlank
     private String horarioApertura;

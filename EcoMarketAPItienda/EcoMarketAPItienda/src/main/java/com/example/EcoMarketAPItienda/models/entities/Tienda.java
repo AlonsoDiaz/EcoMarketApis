@@ -16,7 +16,8 @@ public class Tienda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int idTienda;
 
   
     @Column(name = "horario_apertura", nullable = false)

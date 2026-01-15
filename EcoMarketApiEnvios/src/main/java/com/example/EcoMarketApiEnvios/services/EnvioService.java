@@ -65,32 +65,20 @@ public class EnvioService {
 	}
 
 	public Envio actualizarEnvio(ActualizarEnvio nuevo) {
-		Envio envio = envioRepository.findById(nuevo.getIdEnvio()).orElse(null);
-		if (envio == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Envio no encontrado.");
-		}
+    Envio envio = envioRepository.findById(nuevo.getIdEnvio()).orElse(null);
+    if (envio == null) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Envio no encontrado.");
+    }
 
-		if (nuevo.getEstado() != null) {
-			envio.setEstado(nuevo.getEstado());
-		}
-		if (nuevo.getDestino() != null) {
-			envio.setDestino(nuevo.getDestino());
-		}
-		if (nuevo.getDireccionEntrega() != null) {
-			envio.setDireccionEntrega(nuevo.getDireccionEntrega());
-		}
-		if (nuevo.getIdTienda() != null) {
-			envio.setIdTienda(nuevo.getIdTienda());
-		}
-		if (nuevo.getCosto() != null) {
-			envio.setCosto(nuevo.getCosto());
-		}
-		if (nuevo.getFechaEstimadaEntrega() != null) {
-			envio.setFechaEstimadaEntrega(nuevo.getFechaEstimadaEntrega());
-		}
+    envio.setEstado(nuevo.getEstado());
+    envio.setDestino(nuevo.getDestino());
+    envio.setDireccionEntrega(nuevo.getDireccionEntrega());
+    envio.setIdTienda(nuevo.getIdTienda());
+    envio.setCosto(nuevo.getCosto());
+    envio.setFechaEstimadaEntrega(nuevo.getFechaEstimadaEntrega());
 
-		return envioRepository.save(envio);
-	}
+    return envioRepository.save(envio);
+}
 
 	public String eliminarEnvio(int idEnvio) {
 		if (envioRepository.existsById(idEnvio)) {

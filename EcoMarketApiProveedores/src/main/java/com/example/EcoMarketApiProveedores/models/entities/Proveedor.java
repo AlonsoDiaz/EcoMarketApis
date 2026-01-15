@@ -32,15 +32,12 @@ public class Proveedor {
 	@Column(name = "direccion", nullable = false)
 	private String direccion;
 
-	// Días típicos de entrega para planear reabastecimiento
-	@Column(name = "tiempo_entrega_dias", nullable = false)
-	private int tiempoEntregaDias;
-
-	// Mínimo de unidades o monto para generar pedido
+	
+	
 	@Column(name = "minimo_pedido", nullable = false)
 	private int minimoPedido;
 
-	// Notas sobre pago, recepción o condiciones especiales
+	
 	@Column(name = "condiciones", nullable = false)
 	private String condiciones;
 

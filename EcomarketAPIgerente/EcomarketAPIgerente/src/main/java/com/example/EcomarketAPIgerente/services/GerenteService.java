@@ -43,13 +43,17 @@ public class GerenteService {
         return "Gerente eliminado correctamente";
     }
 
-    public Gerente actualizarGerente(ActualizarMarca datos) {
-        return gerenteRepository.findById(datos.getId())
+    public Gerente actualizarGerente(Gerente gerente) {
+        return gerenteRepository.findById(gerente.getId())
             .map(gerenteExistente -> {
-                gerenteExistente.setNombre(datos.getNombre());
+                gerenteExistente.setNombre(gerente.getNombre());
                 return gerenteRepository.save(gerenteExistente);
             })
             .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Gerente no encontrado"));
+    }
+
+    public List<Gerente> obtenerTodasLasMarcas() {
+        return gerenteRepository.findAll();
     }
 }

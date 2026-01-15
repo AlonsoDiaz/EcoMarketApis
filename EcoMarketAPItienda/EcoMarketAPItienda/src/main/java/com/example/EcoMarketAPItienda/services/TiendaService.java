@@ -35,7 +35,7 @@ public class TiendaService {
 
     public Tienda actualizarTienda(ActualizarTienda datos) {
         // Buscamos si existe la tienda
-        Tienda tiendaExistente = tiendaRepository.findById(datos.getId()).orElse(null);
+        Tienda tiendaExistente = tiendaRepository.findById(datos.getIdTienda()).orElse(null);
         
         if (tiendaExistente != null) {
             tiendaExistente.setHorarioApertura(datos.getHorarioApertura());

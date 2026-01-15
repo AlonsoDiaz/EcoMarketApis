@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>EcomarketAPIgerente</artifactId>
+	<artifactId>EcoMarketAPItienda</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EcomarketAPIgerente</name>
-	<description>gerente</description>
+	<name>EcoMarketAPItienda</name>
+	<description>tienda</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -49,11 +49,13 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>		<groupId>com.mysql</groupId>
-		<artifactId>mysql-connector-j</artifactId>
-		<scope>runtime</scope>
-	</dependency>
-	<dependency>			<groupId>org.projectlombok</groupId>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>

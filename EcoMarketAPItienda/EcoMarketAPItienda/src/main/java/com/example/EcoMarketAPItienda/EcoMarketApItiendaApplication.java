@@ -1,13 +1,13 @@
-package com.example.EcomarketAPIgerente;
+package com.example.EcoMarketAPItienda;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcomarketApIgerenteApplication {
+public class EcoMarketApItiendaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EcomarketApIgerenteApplication.class, args);
+		SpringApplication.run(EcoMarketApItiendaApplication.class, args);
 	}
 
 }

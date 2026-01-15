@@ -36,7 +36,7 @@ public class Envio {
 	private String estado;
 
 	@Column(name = "costo", nullable = false)
-	private double costo;
+	private int costo;
 
 	@Column(name = "fecha_envio", nullable = false)
 	private LocalDateTime fechaEnvio;

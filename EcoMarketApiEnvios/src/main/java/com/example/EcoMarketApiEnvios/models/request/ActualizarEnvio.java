@@ -19,7 +19,7 @@ public class ActualizarEnvio {
 
 	private Integer idTienda;
 
-	private Double costo;
+	private Integer costo;
 
 	private LocalDate fechaEstimadaEntrega;
 }

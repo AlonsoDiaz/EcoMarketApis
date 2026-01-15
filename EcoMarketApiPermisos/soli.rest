@@ -15,7 +15,7 @@ POST http://localhost:5000/permiso
 Content-Type: application/json
 
 {
-    "userId": 1,
+    
     "categoria": "productos",
     "accion": "crear"
 }
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "id_permiso": 1,
-    "userId": 1,
+
     "categoria": "productos",
     "accion": "editar"
 }

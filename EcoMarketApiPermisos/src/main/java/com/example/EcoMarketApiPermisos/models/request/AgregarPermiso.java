@@ -6,8 +6,6 @@ import lombok.Data;
 @Data
 public class AgregarPermiso {
 
-    @NotBlank
-    private int userId;
 
     @NotBlank
     private String categoria;

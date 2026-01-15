@@ -34,7 +34,6 @@ public class PermisoService {
 
     public Permisos agregarPermiso(AgregarPermiso nuevo){
         Permisos permiso = new Permisos();
-        permiso.setUserId(nuevo.getUserId());
         permiso.setCategoria(nuevo.getCategoria());
         permiso.setAccion(nuevo.getAccion());
 
@@ -47,7 +46,7 @@ public class PermisoService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Permiso no encontrado.");
  
         }else{
-            permisos.setUserId(nueva.getUserId());
+        
             permisos.setCategoria(nueva.getCategoria());
             permisos.setAccion(nueva.getAccion());
 

@@ -23,4 +23,7 @@ public class Pedido {
 
     @Column(name = "estado", nullable = false)
     private String estado;
+
+    @Column(name = "tienda", nullable = false)
+    private String tienda;
 }

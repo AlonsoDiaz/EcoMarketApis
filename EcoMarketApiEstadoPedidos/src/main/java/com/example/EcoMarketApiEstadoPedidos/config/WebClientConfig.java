@@ -18,6 +18,6 @@ public class WebClientConfig {
     @Bean
     @Qualifier("pedidosWebClient")
     public WebClient pedidosWebClient() {
-        return WebClient.builder().baseUrl("http://localhost:5000/pedidos").build();
+        return WebClient.builder().baseUrl("http://localhost:3000/pedidos").build();
     }
 }

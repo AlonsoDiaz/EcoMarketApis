@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:8080
+@baseUrl = http://localhost:2000
 
 ### Listar envios
 GET {{baseUrl}}/envio
@@ -14,7 +14,7 @@ Content-Type: application/json
 	"cliente": "Juan Perez",
 	"destino": "Sucursal Centro",
 	"direccionEntrega": "Av. Principal 123",
-	"idTienda": 10,
+	"idTienda": 1,
 	"costo": 25.5,
 	"fechaEstimadaEntrega": "2025-12-31"
 }

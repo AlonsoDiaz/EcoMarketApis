@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
 
     @Bean
-    public WebClient tiendaWebClient(@Value("${tienda.api.base-url}") String baseUrl){
-        return WebClient.builder().baseUrl(baseUrl).build();
+    public WebClient tiendaWebClient(){
+         return WebClient.builder().baseUrl("http://localhost:1000/tiendas").build();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.EcomarketAPIpedido.models.intities;
+package com.example.EcomarketAPIpedido.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

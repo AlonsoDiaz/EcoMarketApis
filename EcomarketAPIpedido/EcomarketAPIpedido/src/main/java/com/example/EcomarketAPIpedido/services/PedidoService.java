@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.EcomarketAPIpedido.models.intities.Pedido;
+import com.example.EcomarketAPIpedido.models.entities.Pedido;
 import com.example.EcomarketAPIpedido.models.request.ActualizarPedido;
 import com.example.EcomarketAPIpedido.models.request.AgregarPedido;
 import com.example.EcomarketAPIpedido.repositories.PedidoRepository;

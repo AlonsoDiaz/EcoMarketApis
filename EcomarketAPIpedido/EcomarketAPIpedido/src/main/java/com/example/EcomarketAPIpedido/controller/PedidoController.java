@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 import com.example.EcomarketAPIpedido.models.request.AgregarPedido;
-import com.example.EcomarketAPIpedido.models.intities.Pedido;
+import com.example.EcomarketAPIpedido.models.entities.Pedido;
 import com.example.EcomarketAPIpedido.models.request.ActualizarPedido;
 import com.example.EcomarketAPIpedido.services.PedidoService;
 

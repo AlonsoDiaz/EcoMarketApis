@@ -1,20 +1,21 @@
 package com.example.EcoMarketApiEmpleadoInventario.models.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class ActualizarProducto {
 
-    @NotBlank
-    private int id_producto;
+    @NotNull
+    private Integer id_producto;
 
     @NotBlank
     private String nombre;
 
-    @NotBlank
-    private double precio_unitario;
+    @NotNull
+    private Double precio_unitario;
 
-    @NotBlank
-    private int stock_actual;
+    @NotNull
+    private Integer stock_actual;
 }

@@ -1,0 +1,17 @@
+##### Listar todas las facturas
+GET http://127.0.0.1:5666/api/empleado/facturacion
+Content-Type: application/json
+
+##### Buscar factura por ID
+GET http://127.0.0.1:5666/api/empleado/facturacion/1
+Content-Type: application/json
+
+##### Generar nueva factura
+POST http://127.0.0.1:5666/api/empleado/facturacion
+Content-Type: application/json
+
+{
+    "id_venta": 101,
+    "total_facturado": 159990.50,
+    "correo_cliente": "cliente@correo.com"
+}

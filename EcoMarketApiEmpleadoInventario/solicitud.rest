@@ -1,0 +1,28 @@
+##### Listar todos los productos
+GET http://127.0.0.1:5677/api/empleado/inventario
+Content-Type: application/json
+
+##### Buscar producto por ID
+GET http://127.0.0.1:5677/api/empleado/inventario/1
+Content-Type: application/json
+
+##### Agregar nuevo producto
+POST http://127.0.0.1:5677/api/empleado/inventario
+Content-Type: application/json
+
+{
+    "nombre": "Laptop Gamer",
+    "precio_unitario": 1299900.50,
+    "stock_actual": 10
+}
+
+##### Actualizar producto existente
+PUT http://127.0.0.1:5677/api/empleado/inventario
+Content-Type: application/json
+
+{
+    "id_producto": 1,
+    "nombre": "Laptop Gamer Pro",
+    "precio_unitario": 1499900.50,
+    "stock_actual": 8
+}

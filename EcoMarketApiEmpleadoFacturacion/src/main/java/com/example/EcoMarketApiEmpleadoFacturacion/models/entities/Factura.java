@@ -30,5 +30,4 @@ public class Factura {
 
     @Column(nullable = false)
     private String correo_cliente;
-
 }

@@ -1,0 +1,39 @@
+##### Listar todas las devoluciones/reclamaciones
+GET http://127.0.0.1:5656/api/empleado/devoluciones
+Content-Type: application/json
+
+##### Buscar devolución/reclamación por ID
+GET http://127.0.0.1:5656/api/empleado/devoluciones/1
+Content-Type: application/json
+
+##### Registrar nueva devolución/reclamación
+POST http://127.0.0.1:5656/api/empleado/devoluciones
+Content-Type: application/json
+
+{
+    "id_venta": 123,
+    "motivo": "Producto defectuoso",
+    "estado": "Pendiente"
+}
+
+##### Actualizar devolución/reclamación existente
+PUT http://127.0.0.1:5656/api/empleado/devoluciones/1
+Content-Type: application/json
+
+{
+    "id_venta": 123,
+    "motivo": "Producto defectuoso - actualizado",
+    "estado": "Procesado"
+}
+
+##### Eliminar devolución/reclamación
+DELETE http://127.0.0.1:5656/api/empleado/devoluciones/1
+Content-Type: application/json
+
+##### Buscar por estado
+GET http://127.0.0.1:5656/api/empleado/devoluciones/estado/Pendiente
+Content-Type: application/json
+
+##### Buscar por id_venta
+GET http://127.0.0.1:5656/api/empleado/devoluciones/venta/123
+Content-Type: application/json

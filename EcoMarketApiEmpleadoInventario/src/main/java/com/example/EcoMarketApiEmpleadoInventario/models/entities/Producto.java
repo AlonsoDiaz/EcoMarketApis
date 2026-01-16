@@ -1,5 +1,6 @@
 package com.example.EcoMarketApiEmpleadoInventario.models.entities;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_producto;
-    
+
     @Column(nullable = false)
     private String nombre;
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.EcoMarketApiEmpleadoFacturacion.models.entities.Factura;
+import com.example.EcoMarketApiEmpleadoFacturacion.models.request.GenerarFacturaRequest;
 import com.example.EcoMarketApiEmpleadoFacturacion.services.FacturaService;
 
 @RestController
@@ -31,9 +32,7 @@ public class FacturaController {
     }
 
     @PostMapping
-    public Factura generarFactura(
-        @RequestBody GenerarFacturaRequest request) {
-    return facturaService.generarFactura(request);
+    public Factura generarFactura(@RequestBody GenerarFacturaRequest request) {
+        return facturaService.generarFactura(request);
     }
-
 }

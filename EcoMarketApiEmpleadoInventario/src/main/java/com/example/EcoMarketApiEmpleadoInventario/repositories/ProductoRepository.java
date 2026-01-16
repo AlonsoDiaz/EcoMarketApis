@@ -8,4 +8,3 @@ import com.example.EcoMarketApiEmpleadoInventario.models.entities.Producto;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 }
-

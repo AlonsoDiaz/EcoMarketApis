@@ -29,12 +29,13 @@ public class ReportesController {
     }
 
     @PostMapping
-    public Reportes guardar(@Valid @RequestBody AgregarReportes request) {
+    public Reportes guardar(@RequestBody AgregarReportes request) {
         return reportesService.crearReporte(request);
     }
 
-    @PutMapping
-    public Reportes editar(@Valid @RequestBody ActualizarReportes request) {
+    @PutMapping("/{id}")
+    public Reportes editar(@PathVariable int id, @RequestBody ActualizarReportes request) {
+        request.setIdReporte((long) id);
         return reportesService.actualizarReporte(request);
     }
 

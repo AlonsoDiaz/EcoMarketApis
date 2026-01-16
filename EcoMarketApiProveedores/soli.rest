@@ -1,0 +1,41 @@
+### Obtener todos los proveedores
+GET http://localhost:9000/proveedor
+
+### Obtener proveedor por id
+GET http://localhost:9000/proveedor/1
+
+### Crear proveedor
+POST http://localhost:9000/proveedor
+Content-Type: application/json
+
+{
+	"nombre": "Proveedor Uno",
+	"contacto": "Laura Perez",
+	"telefono": "5551234567",
+	"email": "contacto@proveedoruno.com",
+	"direccion": "Calle 123, Ciudad",
+	"minimoPedido": 50,
+	"condiciones": "Pago a 30 dias",
+	"notasRecepcion": "Entregas matutinas",
+	"activo": true
+}
+
+### Actualizar proveedor
+PUT http://localhost:9000/proveedor
+Content-Type: application/json
+
+{
+	"id": 1,
+	"nombre": "Proveedor Uno Actualizado",
+	"contacto": "Laura Perez",
+	"telefono": "5551234567",
+	"email": "contacto@proveedoruno.com",
+	"direccion": "Calle 123, Ciudad",
+	"minimoPedido": 75,
+	"condiciones": "Pago a 30 dias, descuento 5%",
+	"notasRecepcion": "Avisar antes de llegar",
+	"activo": true
+}
+
+### Eliminar proveedor
+DELETE http://localhost:9000/proveedor/1

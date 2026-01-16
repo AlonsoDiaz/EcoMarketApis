@@ -1,0 +1,42 @@
+### Obtener todos los permisos (READ ALL)
+GET http://localhost:5000/permiso
+Content-Type: application/json
+
+###
+
+### Obtener permiso por ID (READ ONE)
+GET http://localhost:5000/permiso/1
+Content-Type: application/json
+
+###
+
+### Crear un nuevo permiso (CREATE)
+POST http://localhost:5000/permiso
+Content-Type: application/json
+
+{
+    
+    "categoria": "productos",
+    "accion": "crear"
+}
+
+###
+
+### Actualizar un permiso (UPDATE)
+PUT http://localhost:5000/permiso
+Content-Type: application/json
+
+{
+    "id_permiso": 1,
+
+    "categoria": "productos",
+    "accion": "editar"
+}
+
+###
+
+### Eliminar un permiso (DELETE)
+DELETE http://localhost:5000/permiso/1
+Content-Type: application/json
+
+###

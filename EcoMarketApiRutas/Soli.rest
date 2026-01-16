@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:8080
+
+### Listar rutas
+GET {{baseUrl}}/ruta
+
+### Obtener ruta por id
+GET {{baseUrl}}/ruta/1
+
+### Crear ruta
+POST {{baseUrl}}/ruta
+Content-Type: application/json
+
+{
+	"origen": "Bodega Central",
+	"destino": "Sucursal Norte",
+	"distanciaKm": 25,
+	"duracionMin": 45,
+	"costoEstimado": 120,
+	"estado": "ACTIVA"
+}
+
+### Actualizar ruta
+PUT {{baseUrl}}/ruta
+Content-Type: application/json
+
+{
+	"idRuta": 1,
+	"origen": "Bodega Central",
+	"destino": "Sucursal Centro",
+	"distanciaKm": 30,
+	"duracionMin": 50,
+	"costoEstimado": 140,
+	"estado": "ACTIVA"
+}
+
+### Eliminar ruta
+DELETE {{baseUrl}}/ruta/1

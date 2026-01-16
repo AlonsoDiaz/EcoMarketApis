@@ -17,8 +17,6 @@ public class Permisos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_permiso;
 
-    @Column(name = "user_id", nullable = false)
-    private int userId;
 
     @Column(name = "categoria", nullable = false)
     private String categoria;

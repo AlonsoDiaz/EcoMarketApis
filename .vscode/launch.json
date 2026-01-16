@@ -1,8 +1,9 @@
 {
     "configurations": [
+        
         {
             "type": "java",
-            "name": "Spring Boot-EcoMarketApiEmpleadoDevolucionesReclamacionesApplication<EcoMarketApiEmpleadoDevolucionesReclamaciones>",
+            "name": "Spring Boot-EcoMarketApiEmpleadoDevolucionesReclamacionesApplication (EcoMarketApiEmpleadoDevolucionesReclamaciones)",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.EcoMarketApiEmpleadoDevolucionesReclamacionesApplication",
@@ -12,7 +13,7 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-EcoMarketApiEmpleadoFacturacionApplication<EcoMarketApiEmpleadoFacturacion>",
+            "name": "Spring Boot-EcoMarketApiEmpleadoFacturacionApplication (EcoMarketApiEmpleadoFacturacion)",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.EcoMarketApiEmpleadoFacturacion.EcoMarketApiEmpleadoFacturacionApplication",
@@ -22,7 +23,7 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-EcoMarketApiEmpleadoInventarioApplication<EcoMarketApiEmpleadoInventario>",
+            "name": "Spring Boot-EcoMarketApiEmpleadoInventarioApplication (EcoMarketApiEmpleadoInventario)",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.EcoMarketApiEmpleadoInventario.EcoMarketApiEmpleadoInventarioApplication",

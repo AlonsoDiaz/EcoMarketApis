@@ -1,0 +1,32 @@
+### Listar todos los pedidos
+GET http://localhost:3000/pedidos
+Accept: application/json
+
+### Obtener pedido por id
+GET http://localhost:3000/pedidos/1
+Accept: application/json
+
+### Crear pedido
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+	"cliente": "Juan Perez",
+	"estado": "PENDIENTE",
+	"tienda": "Sucursal Centro"
+}
+
+### Actualizar pedido
+PUT http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+	"id_pedido": 1,
+	"cliente": "Juan Perez",
+	"estado": "EN_PROCESO",
+	"tienda": "Sucursal Centro"
+}
+
+### Eliminar pedido
+DELETE http://localhost:3000/pedidos/1
+Accept: application/json

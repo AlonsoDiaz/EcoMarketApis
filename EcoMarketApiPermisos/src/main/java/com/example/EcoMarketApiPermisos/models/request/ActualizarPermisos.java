@@ -9,8 +9,6 @@ public class ActualizarPermisos {
     @NotBlank
     private int id_permiso;
 
-    @NotBlank
-    private int userId;
 
     @NotBlank
     private String categoria;

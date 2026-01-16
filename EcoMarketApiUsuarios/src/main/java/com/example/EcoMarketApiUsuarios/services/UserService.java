@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.example.EcoMarketApiUsuarios.models.dto.PermisoDto;
 import com.example.EcoMarketApiUsuarios.models.entities.User;
 import com.example.EcoMarketApiUsuarios.models.request.ActualizarUser;
 import com.example.EcoMarketApiUsuarios.models.request.AgregarUser;
@@ -17,6 +19,9 @@ public class UserService {
     
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private WebClient permisoWebClient;
 
     public List<User> obtenerTodosLosUsers(){
         return userRepository.findAll();
@@ -33,13 +38,29 @@ public class UserService {
 
 
     public User  agregarUser(AgregarUser nuevo){
+        PermisoDto permiso = null;
+        try {
+            permiso = permisoWebClient.get()
+                .uri("/{id_permiso}", nuevo.getId_permiso())
+                .retrieve()
+                .bodyToMono(PermisoDto.class)
+                .block();
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fallo el webCLient: " + e.getMessage());
+        }
+        
+        if (permiso == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Permiso no encontrado.");
+        }
+
         User user = new User();
         user.setNombre(nuevo.getNombre());
         user.setEmail(nuevo.getEmail());
         user.setPassword(nuevo.getPassword());
-
+        user.setId_permiso(nuevo.getId_permiso());
         return userRepository.save(user);
     }
+    
 
     public User actualizarUser(ActualizarUser nuevo){
         User user = userRepository.findById(nuevo.getId()).orElse(null);

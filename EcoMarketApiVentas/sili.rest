@@ -1,0 +1,27 @@
+### Obtener todas las ventas
+GET http://localhost:9100/venta
+
+### Obtener venta por ID
+GET http://localhost:9100/venta/1
+
+### Crear nueva venta
+POST http://localhost:9100/venta
+Content-Type: application/json
+
+{
+	"cliente": "Cliente Demo",
+	"subtotal": 1500
+}
+
+### Actualizar venta
+PUT http://localhost:9100/venta
+Content-Type: application/json
+
+{
+	"id_venta": 1,
+	"cliente": "Cliente Actualizado",
+	"subtotal": 1800
+}
+
+### Eliminar venta
+DELETE http://localhost:9100/venta/1

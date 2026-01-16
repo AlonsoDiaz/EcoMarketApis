@@ -1,0 +1,33 @@
+@baseUrl = http://localhost:4000
+
+### Listar inventarios
+GET {{baseUrl}}/inventario
+
+### Obtener inventario por id
+GET {{baseUrl}}/inventario/1
+
+### Crear inventario
+POST {{baseUrl}}/inventario
+Content-Type: application/json
+
+{
+	"nombreProducto": "Producto A",
+	"cantidadStock": 100,
+	"precio": 50.0,
+	"categoria": "Electrónica"
+}
+
+### Actualizar inventario
+PUT {{baseUrl}}/inventario
+Content-Type: application/json
+
+{
+	"idProducto": 1,
+	"nombreProducto": "Producto A Actualizado",
+	"cantidadStock": 150,
+	"precio": 55.0,
+	"categoria": "Electrónica"
+}
+
+### Eliminar inventario
+DELETE {{baseUrl}}/inventario/1

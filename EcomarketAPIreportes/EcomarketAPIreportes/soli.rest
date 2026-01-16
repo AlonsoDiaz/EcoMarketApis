@@ -1,0 +1,28 @@
+### CREATE - Crear un nuevo reporte
+POST http://localhost:9000/reportes HTTP/1.1
+Content-Type: application/json
+
+{
+    "tipo":"primer reporte",
+    "descripcion":"Descripción del reporte",
+    "fecha":"2026-01-15"
+}
+
+### READ - Obtener todos los reportes
+GET http://localhost:9000/reportes HTTP/1.1
+
+### READ - Obtener un reporte por ID
+GET http://localhost:9000/reportes/1 HTTP/1.1
+
+### UPDATE - Actualizar un reporte
+PUT http://localhost:9000/reportes/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "tipo":"reporte actualizado",
+    "descripcion":"Descripción actualizada",
+    "fecha":"2026-01-15"
+}
+
+### DELETE - Eliminar un reporte
+DELETE http://localhost:9000/reportes/1 HTTP/1.1

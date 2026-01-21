@@ -4,7 +4,7 @@ package com.example.EcomarketAPIreportes.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
+
 
 import com.example.EcomarketAPIreportes.Services.ReportesService;
 import com.example.EcomarketAPIreportes.models.entities.Reportes;

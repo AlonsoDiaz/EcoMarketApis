@@ -9,3 +9,5 @@ import com.example.EcomarketAPIreportes.models.entities.Reportes;
 public interface ReportesRepository extends JpaRepository<Reportes, Integer> {
     
 }
+
+

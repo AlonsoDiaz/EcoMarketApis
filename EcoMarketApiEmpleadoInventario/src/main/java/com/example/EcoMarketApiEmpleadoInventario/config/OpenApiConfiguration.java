@@ -13,12 +13,14 @@ public class OpenApiConfiguration {
 
      @Value("${app.version}")
     private String version;
+
+
     @Bean 
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
             .info(new Info()
                 .title("Inventario de Productos")
-                .version(version)
+                .version("1.0")
                 .description("Gestión de productos disponibles en EcoMarket")
                 .contact(new Contact()
                     .name("EcoMarket")));

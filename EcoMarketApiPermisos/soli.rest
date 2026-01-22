@@ -20,6 +20,8 @@ Content-Type: application/json
     "accion": "crear"
 }
 
+
+
 ###
 
 ### Actualizar un permiso (UPDATE)

@@ -2,51 +2,56 @@ package com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.services;
 
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+
 import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.models.entities.DevolucionesReclamaciones;
+import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.models.request.DevolucionReclamacion;
 import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.repositories.DevolucionReclamacionRepository;
 
 @Service
 public class DevolucionReclamacionService {
 
-    @Autowired
-    private DevolucionReclamacionRepository devolucionRepository;
+    private final DevolucionReclamacionRepository repository;
 
-    public List<DevolucionesReclamaciones> listarDevolucionesReclamaciones() {
-        return devolucionRepository.findAll();
+    public DevolucionReclamacionService(DevolucionReclamacionRepository repository) {
+        this.repository = repository;
     }
 
-    public DevolucionesReclamaciones buscarPorId(int id) {
-        return devolucionRepository.findById(id).orElse(null);
+    //POST (registrar)
+    public DevolucionesReclamaciones registrar(DevolucionReclamacion request) {
+
+        DevolucionesReclamaciones entity = new DevolucionesReclamaciones();
+        entity.setIdVenta(request.getIdVenta());
+        entity.setMotivo(request.getMotivo());
+        entity.setFechaSolicitud(LocalDate.now());
+        entity.setEstadoReclamacion("PENDIENTE");
+
+        return repository.save(entity);
     }
 
-    public DevolucionesReclamaciones registrarDevolucion(DevolucionesReclamaciones request) {
-        request.setFecha(LocalDate.now());
-        return devolucionRepository.save(request);
+    //GET (listar)
+    public List<DevolucionesReclamaciones> listar() {
+        return repository.findAll();
     }
 
-    public DevolucionesReclamaciones actualizarDevolucion(int id, DevolucionesReclamaciones request) {
-        DevolucionesReclamaciones dev = devolucionRepository.findById(id).orElse(null);
-        if (dev != null) {
-            dev.setMotivo(request.getMotivo());
-            dev.setEstado(request.getEstado());
-            dev.setId_venta(request.getId_venta());
-            return devolucionRepository.save(dev);
-        }
-        return null;
+    //PUT (actualizar)
+    public DevolucionesReclamaciones actualizar(
+            Integer id,
+            DevolucionesReclamaciones datosActualizados) {
+
+        DevolucionesReclamaciones existente = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException(
+                "Devolución/Reclamación no encontrada"));
+
+        existente.setMotivo(datosActualizados.getMotivo());
+        existente.setEstadoReclamacion(datosActualizados.getEstadoReclamacion());
+
+        return repository.save(existente);
     }
 
-    public String eliminarDevolucion(int id) {
-        devolucionRepository.deleteById(id);
-        return "Eliminado";
-    }
-
-    public List<DevolucionesReclamaciones> buscarPorEstado(String estado) {
-        return devolucionRepository.findByEstado(estado);
-    }
-
-    public List<DevolucionesReclamaciones> buscarPorIdVenta(int idVenta) {
-        return devolucionRepository.findById_venta(idVenta);
+    //DELETE (eliminar)
+    public void eliminar(Integer id) {
+        repository.deleteById(id);
     }
 }

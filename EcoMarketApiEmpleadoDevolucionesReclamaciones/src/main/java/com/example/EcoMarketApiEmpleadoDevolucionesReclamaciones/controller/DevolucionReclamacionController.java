@@ -1,58 +1,52 @@
 package com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.controller;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.validation.Valid;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.models.entities.DevolucionesReclamaciones;
+import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.models.request.DevolucionReclamacion;
 import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.services.DevolucionReclamacionService;
 
 @RestController
-@RequestMapping("/api/empleado/devoluciones")
-public class DevolucionReclamacionController {
+@RequestMapping("/devoluciones-reclamaciones")
+public class DevolucionReclamacionController extends BaseController {
 
-    @Autowired
-    private DevolucionReclamacionService devolucionService;
+    private final DevolucionReclamacionService service;
 
+    public DevolucionReclamacionController(DevolucionReclamacionService service) {
+        this.service = service;
+    }
+
+    //GET (listar)
     @GetMapping
-    public List<DevolucionesReclamaciones> listarDevolucionesReclamaciones() {
-        return devolucionService.listarDevolucionesReclamaciones();
+    public ResponseEntity<List<DevolucionesReclamaciones>> listar() {
+        return ok(service.listar());
     }
 
-    @GetMapping("/{id}")
-    public DevolucionesReclamaciones buscarDevolucion(@PathVariable int id) {
-        return devolucionService.buscarPorId(id);
-    }
-
+    //POST (registrar)
     @PostMapping
-    public DevolucionesReclamaciones registrarDevolucion(@RequestBody DevolucionesReclamaciones request) {
-        return devolucionService.registrarDevolucion(request);
+    public ResponseEntity<DevolucionesReclamaciones> registrar(
+            @RequestBody @Valid DevolucionReclamacion request) {
+        return ok(service.registrar(request));
     }
 
+    //PUT (actualizar)
     @PutMapping("/{id}")
-    public DevolucionesReclamaciones actualizarDevolucion(@PathVariable int id, @RequestBody DevolucionesReclamaciones request) {
-        return devolucionService.actualizarDevolucion(id, request);
+    public ResponseEntity<DevolucionesReclamaciones> actualizar(
+            @PathVariable Integer id,
+            @RequestBody DevolucionesReclamaciones body) {
+
+        return ok(service.actualizar(id, body));
     }
 
+    //DELETE (eliminar)
     @DeleteMapping("/{id}")
-    public String eliminarDevolucion(@PathVariable int id) {
-        return devolucionService.eliminarDevolucion(id);
-    }
-    
-    @GetMapping("/estado/{estado}")
-    public List<DevolucionesReclamaciones> buscarPorEstado(@PathVariable String estado) {
-        return devolucionService.buscarPorEstado(estado);
-    }
-
-    @GetMapping("/venta/{idVenta}")
-    public List<DevolucionesReclamaciones> buscarPorIdVenta(@PathVariable int idVenta) {
-        return devolucionService.buscarPorIdVenta(idVenta);
+    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+        service.eliminar(id);
+        return noContent();
     }
 }

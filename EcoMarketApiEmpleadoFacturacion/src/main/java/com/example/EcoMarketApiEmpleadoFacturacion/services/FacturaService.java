@@ -2,34 +2,43 @@ package com.example.EcoMarketApiEmpleadoFacturacion.services;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.EcoMarketApiEmpleadoFacturacion.models.entities.Factura;
-import com.example.EcoMarketApiEmpleadoFacturacion.models.request.GenerarFacturaRequest;
 import com.example.EcoMarketApiEmpleadoFacturacion.repositories.FacturaRepository;
 
 @Service
 public class FacturaService {
+    private final FacturaRepository repository;
 
-    @Autowired
-    private FacturaRepository facturaRepository;
-
-    public List<Factura> listarFacturas() {
-        return facturaRepository.findAll();
+    public FacturaService(FacturaRepository repository) {
+        this.repository = repository;
     }
 
-    public Factura buscarPorId(int id) {
-        return facturaRepository.findById(id).orElse(null);
+    public List<Factura> listar() {
+        return repository.findAll();
     }
 
-    public Factura generarFactura(GenerarFacturaRequest request) {
-        Factura factura = new Factura();
-        factura.setId_venta(request.getId_venta());
-        factura.setTotal_facturado(request.getTotal_facturado());
-        factura.setCorreo_cliente(request.getCorreo_cliente());
-        factura.setFecha_emision(LocalDate.now());
-        return facturaRepository.save(factura);
+    public Factura guardar(Factura factura) {
+        if (factura.getFecha_emision() == null) {
+            factura.setFecha_emision(LocalDate.now());
+        }
+        return repository.save(factura);
+    }
+
+    public Factura actualizar(int id, Factura datos) {
+        return repository.findById(id).map(ex -> {
+            ex.setId_venta(datos.getId_venta());
+            ex.setTotal_facturado(datos.getTotal_facturado());
+            ex.setCorreo_cliente(datos.getCorreo_cliente());
+            return repository.save(ex);
+        }).orElse(null);
+    }
+
+    public boolean eliminar(int id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

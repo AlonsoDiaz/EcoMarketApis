@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,14 +32,4 @@ public class DevolucionesReclamaciones {
     @Column(name = "estado_reclamacion", nullable = false)
     private String estadoReclamacion;
     
-    // Metodo asignar fecha automaticamente
-    @PrePersist
-    public void prePersist() {
-        if (this.fechaSolicitud == null) {
-            this.fechaSolicitud = LocalDate.now();
-        }
-        if (this.estadoReclamacion == null) {
-            this.estadoReclamacion = "PENDIENTE";
-        }
-    }
 }

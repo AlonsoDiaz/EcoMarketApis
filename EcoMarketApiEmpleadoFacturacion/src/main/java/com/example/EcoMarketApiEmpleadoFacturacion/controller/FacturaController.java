@@ -1,38 +1,38 @@
 package com.example.EcoMarketApiEmpleadoFacturacion.controller;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.example.EcoMarketApiEmpleadoFacturacion.models.entities.Factura;
-import com.example.EcoMarketApiEmpleadoFacturacion.models.request.GenerarFacturaRequest;
 import com.example.EcoMarketApiEmpleadoFacturacion.services.FacturaService;
 
 @RestController
-@RequestMapping("/api/empleado/facturacion")
-public class FacturaController {
+@RequestMapping("/facturas")
+public class FacturaController extends BaseController {
+    private final FacturaService service;
 
-    @Autowired
-    private FacturaService facturaService;
-
-    @GetMapping
-    public List<Factura> listarFacturas() {
-        return facturaService.listarFacturas();
+    public FacturaController(FacturaService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public Factura buscarFactura(@PathVariable int id) {
-        return facturaService.buscarPorId(id);
+    @GetMapping
+    public ResponseEntity<List<Factura>> listar() {
+        return ok(service.listar());
     }
 
     @PostMapping
-    public Factura generarFactura(@RequestBody GenerarFacturaRequest request) {
-        return facturaService.generarFactura(request);
+    public ResponseEntity<Factura> crear(@RequestBody Factura factura) {
+        return ok(service.guardar(factura));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Factura> actualizar(@PathVariable("id") int id, @RequestBody Factura factura) {
+        Factura a = service.actualizar(id, factura);
+        return (a != null) ? ok(a) : notFound();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable("id") int id) {
+        return service.eliminar(id) ? noContent() : notFound();
     }
 }

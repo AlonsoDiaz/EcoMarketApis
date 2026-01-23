@@ -1,24 +1,15 @@
 package com.example.EcoMarketApiEmpleadoInventario.controller;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
 
-import com.example.EcoMarketApiEmpleadoInventario.models.dto.VersionInfo;
-
-@RestController
-@RequestMapping("/")
-public class BaseController {
-
-    @Value("${app.name}")
-    private String nombre;
-
-    @Value("${app.version}")
-    private String version;
-
-    @GetMapping("")
-    public VersionInfo base() {
-        return new VersionInfo(nombre, version);
+public abstract class BaseController {
+    protected <T> ResponseEntity<T> ok(T body) {
+        return ResponseEntity.ok(body);
+    }
+    protected <T> ResponseEntity<T> notFound() {
+        return ResponseEntity.notFound().build();
+    }
+    protected ResponseEntity<Void> noContent() {
+        return ResponseEntity.noContent().build();
     }
 }

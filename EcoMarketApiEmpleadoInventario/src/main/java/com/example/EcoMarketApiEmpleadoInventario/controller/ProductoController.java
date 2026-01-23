@@ -1,45 +1,38 @@
 package com.example.EcoMarketApiEmpleadoInventario.controller;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.example.EcoMarketApiEmpleadoInventario.models.entities.Producto;
-import com.example.EcoMarketApiEmpleadoInventario.models.request.AgregarProducto;
-import com.example.EcoMarketApiEmpleadoInventario.models.request.ActualizarProducto;
 import com.example.EcoMarketApiEmpleadoInventario.services.ProductoService;
 
 @RestController
-@RequestMapping("/api/empleado/inventario")
-public class ProductoController {
+@RequestMapping("/productos")
+public class ProductoController extends BaseController {
+    private final ProductoService service;
 
-    @Autowired
-    private ProductoService productoService;
-
-    @GetMapping
-    public List<Producto> listarProductos() {
-        return productoService.listarProductos();
+    public ProductoController(ProductoService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public Producto buscarProducto(@PathVariable int id) {
-        return productoService.buscarPorId(id);
+    @GetMapping
+    public ResponseEntity<List<Producto>> listar() {
+        return ok(service.listar());
     }
 
     @PostMapping
-    public Producto agregarProducto(@RequestBody AgregarProducto request) {
-        return productoService.agregarProducto(request);
+    public ResponseEntity<Producto> crear(@RequestBody Producto producto) {
+        return ok(service.guardar(producto));
     }
 
-    @PutMapping
-    public Producto actualizarProducto(@RequestBody ActualizarProducto request) {
-        return productoService.actualizarProducto(request);
+    @PutMapping("/{id}")
+    public ResponseEntity<Producto> actualizar(@PathVariable("id") int id, @RequestBody Producto producto) {
+        Producto p = service.actualizar(id, producto);
+        return (p != null) ? ok(p) : notFound();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable("id") int id) {
+        return service.eliminar(id) ? noContent() : notFound();
     }
 }

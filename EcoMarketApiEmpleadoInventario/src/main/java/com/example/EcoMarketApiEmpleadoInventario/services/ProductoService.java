@@ -1,45 +1,41 @@
 package com.example.EcoMarketApiEmpleadoInventario.services;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.EcoMarketApiEmpleadoInventario.models.entities.Producto;
-import com.example.EcoMarketApiEmpleadoInventario.models.request.ActualizarProducto;
-import com.example.EcoMarketApiEmpleadoInventario.models.request.AgregarProducto;
 import com.example.EcoMarketApiEmpleadoInventario.repositories.ProductoRepository;
 
 @Service
 public class ProductoService {
+    private final ProductoRepository repository;
 
-    @Autowired
-    private ProductoRepository productoRepository;
-
-    public List<Producto> listarProductos() {
-        return productoRepository.findAll();
+    public ProductoService(ProductoRepository repository) {
+        this.repository = repository;
     }
 
-    public Producto buscarPorId(int id) {
-        return productoRepository.findById(id).orElse(null);
+    public List<Producto> listar() {
+        return repository.findAll();
     }
 
-    public Producto agregarProducto(AgregarProducto request) {
-        Producto producto = new Producto();
-        producto.setNombre(request.getNombre());
-        producto.setPrecio_unitario(request.getPrecio_unitario());
-        producto.setStock_actual(request.getStock_actual());
-        return productoRepository.save(producto);
+    public Producto guardar(Producto producto) {
+        return repository.save(producto);
     }
 
-    public Producto actualizarProducto(ActualizarProducto request) {
-        Producto producto = productoRepository.findById(request.getId_producto()).orElse(null);
-        if (producto != null) {
-            producto.setNombre(request.getNombre());
-            producto.setPrecio_unitario(request.getPrecio_unitario());
-            producto.setStock_actual(request.getStock_actual());
-            return productoRepository.save(producto);
+    public Producto actualizar(int id, Producto datos) {
+        return repository.findById(id).map(p -> {
+            p.setNombre(datos.getNombre());
+            p.setStock_actual(datos.getStock_actual());
+            p.setPrecio_unitario(datos.getPrecio_unitario());
+            p.setCategoria(datos.getCategoria());
+            return repository.save(p);
+        }).orElse(null);
+    }
+
+    public boolean eliminar(int id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
         }
-        return null;
+        return false;
     }
 }

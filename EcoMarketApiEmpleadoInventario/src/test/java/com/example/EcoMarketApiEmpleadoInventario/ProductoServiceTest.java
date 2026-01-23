@@ -1,6 +1,5 @@
 package com.example.EcoMarketApiEmpleadoInventario;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,12 +10,15 @@ import com.example.EcoMarketApiEmpleadoInventario.models.entities.Producto;
 public class ProductoServiceTest {
 
     @Test
-    void pruebaDatosProducto() {
+    void pruebaDatosProductoEcologico() {
         Producto producto = new Producto();
-        producto.setNombre("Arroz");
-        producto.setPrecio_unitario(1500.0);
+        producto.setNombre("Bolsas Compostables Maíz");
+        producto.setStock_actual(150);
+        producto.setPrecio_unitario(4500.0);
+        producto.setCategoria("Hogar Sostenible");
 
-        assertThat(producto.getNombre()).isEqualTo("Arroz");
-        assertThat(producto.getPrecio_unitario()).isEqualTo(1500.0);
+        assertThat(producto.getNombre()).isEqualTo("Bolsas Compostables Maíz");
+        assertThat(producto.getStock_actual()).isPositive();
+        assertThat(producto.getCategoria()).isEqualTo("Hogar Sostenible");
     }
 }

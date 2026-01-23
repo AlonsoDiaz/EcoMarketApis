@@ -1,8 +1,6 @@
 package com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.services;
 
-import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.example.EcoMarketApiEmpleadoDevolucionesReclamaciones.models.entities.DevolucionesReclamaciones;
@@ -18,40 +16,37 @@ public class DevolucionReclamacionService {
         this.repository = repository;
     }
 
-    //POST (registrar)
-    public DevolucionesReclamaciones registrar(DevolucionReclamacion request) {
-
-        DevolucionesReclamaciones entity = new DevolucionesReclamaciones();
-        entity.setIdVenta(request.getIdVenta());
-        entity.setMotivo(request.getMotivo());
-        entity.setFechaSolicitud(LocalDate.now());
-        entity.setEstadoReclamacion("PENDIENTE");
-
-        return repository.save(entity);
-    }
-
-    //GET (listar)
     public List<DevolucionesReclamaciones> listar() {
         return repository.findAll();
     }
 
-    //PUT (actualizar)
-    public DevolucionesReclamaciones actualizar(
-            Integer id,
-            DevolucionesReclamaciones datosActualizados) {
-
-        DevolucionesReclamaciones existente = repository.findById(id)
-            .orElseThrow(() -> new RuntimeException(
-                "Devolución/Reclamación no encontrada"));
-
-        existente.setMotivo(datosActualizados.getMotivo());
-        existente.setEstadoReclamacion(datosActualizados.getEstadoReclamacion());
-
-        return repository.save(existente);
+    public DevolucionesReclamaciones buscarPorId(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 
-    //DELETE (eliminar)
-    public void eliminar(Integer id) {
-        repository.deleteById(id);
+    public DevolucionesReclamaciones registrar(DevolucionReclamacion request) {
+        DevolucionesReclamaciones entidad = new DevolucionesReclamaciones();
+        entidad.setIdVenta(request.getIdVenta());
+        entidad.setMotivo(request.getMotivo());
+        return repository.save(entidad);
+    }
+
+    public DevolucionesReclamaciones actualizar(Integer id, DevolucionReclamacion request) {
+        DevolucionesReclamaciones existente = repository.findById(id).orElse(null);
+        
+        if (existente != null) {
+            existente.setIdVenta(request.getIdVenta());
+            existente.setMotivo(request.getMotivo());
+            return repository.save(existente);
+        }
+        return null;
+    }
+
+    public boolean eliminar(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

@@ -21,32 +21,42 @@ public class DevolucionReclamacionController extends BaseController {
         this.service = service;
     }
 
-    //GET (listar)
+    // GET (Listar)
     @GetMapping
     public ResponseEntity<List<DevolucionesReclamaciones>> listar() {
         return ok(service.listar());
     }
 
-    //POST (registrar)
+    // POST (Registrar)
     @PostMapping
     public ResponseEntity<DevolucionesReclamaciones> registrar(
             @RequestBody @Valid DevolucionReclamacion request) {
         return ok(service.registrar(request));
     }
 
-    //PUT (actualizar)
+    // PUT (Actualizar)
     @PutMapping("/{id}")
     public ResponseEntity<DevolucionesReclamaciones> actualizar(
-            @PathVariable Integer id,
-            @RequestBody DevolucionesReclamaciones body) {
-
-        return ok(service.actualizar(id, body));
+            @PathVariable Integer id, 
+            @RequestBody @Valid DevolucionReclamacion request) {
+        
+        DevolucionesReclamaciones actualizado = service.actualizar(id, request);
+        
+        if (actualizado == null) {
+            return notFound();
+        }
+        return ok(actualizado);
     }
 
-    //DELETE (eliminar)
+    // DELETE (Eliminar)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
-        service.eliminar(id);
-        return noContent();
+        boolean eliminado = service.eliminar(id);
+        
+        if (eliminado) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return notFound();
+        }
     }
 }

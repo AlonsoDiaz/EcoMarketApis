@@ -3,6 +3,8 @@ package com.example.EcoMarketApiPermisos.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,9 @@ import com.example.EcoMarketApiPermisos.models.entities.Permisos;
 import com.example.EcoMarketApiPermisos.models.request.ActualizarPermisos;
 import com.example.EcoMarketApiPermisos.models.request.AgregarPermiso;
 import com.example.EcoMarketApiPermisos.services.PermisoService;
+
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 
 
@@ -32,8 +37,13 @@ public class PermisoController {
     }
 
     @GetMapping("/{idPermiso}")
-    public Permisos obtenerPorId(@PathVariable int idPermiso){
-        return permisoService.ObtenerPermisoPorId(idPermiso);
+    public EntityModel<Permisos> obtenerPorId(@PathVariable int idPermiso){
+        Permisos permisos = permisoService.ObtenerPermisoPorId(idPermiso);
+
+        Link deleteLink = linkTo(PermisoController.class).slash(idPermiso).withRel("Eliminar Permiso");
+        Link selfLink = linkTo(methodOn(PermisoController.class).obtenerTodo()).withRel("Obtener todos los permisos");
+
+        return EntityModel.of(permisos, deleteLink, selfLink);
     }
 
     @PostMapping("")

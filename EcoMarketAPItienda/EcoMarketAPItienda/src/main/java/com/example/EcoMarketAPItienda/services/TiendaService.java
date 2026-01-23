@@ -11,7 +11,7 @@ import com.example.EcoMarketAPItienda.models.request.ActualizarTienda;
 import com.example.EcoMarketAPItienda.models.request.AgregarTienda;
 import com.example.EcoMarketAPItienda.repositories.TiendaRepository;
 
-@Service // ¡Importante! Sin esto el Controller no puede inyectarlo
+@Service 
 public class TiendaService {
 
     @Autowired

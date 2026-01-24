@@ -1,6 +1,5 @@
 package com.example.EcoMarketApiUsuarios.models.entities;
 
-import org.springframework.hateoas.RepresentationModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +12,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "users")
-public class User extends RepresentationModel<User> {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

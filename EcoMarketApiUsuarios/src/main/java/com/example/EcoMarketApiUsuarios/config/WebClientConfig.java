@@ -9,7 +9,7 @@ public class WebClientConfig {
 
     @Bean
     public WebClient permisoWebClient(){
-        return WebClient.builder().baseUrl("http://localhost:5000/permiso").build();
+        return WebClient.builder().baseUrl("http://apipermisos.us-east-1.elasticbeanstalk.com/permiso").build();
     }
     
     

@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:8080
+@baseUrl = http://apirutas.us-east-1.elasticbeanstalk.com
 
 ### Listar rutas
 GET {{baseUrl}}/ruta
@@ -30,7 +30,7 @@ Content-Type: application/json
 	"distanciaKm": 30,
 	"duracionMin": 50,
 	"costoEstimado": 140,
-	"estado": "ACTIVA"
+	"estado": "Inactiva"
 }
 
 ### Eliminar ruta

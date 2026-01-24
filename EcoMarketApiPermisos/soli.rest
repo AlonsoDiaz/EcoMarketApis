@@ -1,5 +1,5 @@
 ### Obtener todos los permisos (READ ALL)
-GET http://localhost:5000/permiso
+GET http://apipermisos.us-east-1.elasticbeanstalk.com/permiso
 Content-Type: application/json
 
 ###
@@ -11,7 +11,7 @@ Content-Type: application/json
 ###
 
 ### Crear un nuevo permiso (CREATE)
-POST http://localhost:5000/permiso
+POST http://apipermisos.us-east-1.elasticbeanstalk.com/permiso
 Content-Type: application/json
 
 {

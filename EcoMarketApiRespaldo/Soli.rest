@@ -1,22 +1,22 @@
 
 
 ### Crear respaldo
-POST http://localhost:7000/respaldos
+POST http://apirespaldo.us-east-1.elasticbeanstalk.com/respaldos
 Content-Type: application/json
 
 {
-	"tipo": "FULL",
+	"tipo": "Basico",
 	"descripcion": "Respaldo inicial"
 }
 
 ### Listar respaldos
-GET http://localhost:7000/respaldos
+GET http://apirespaldo.us-east-1.elasticbeanstalk.com/respaldos
 
 ### Obtener respaldo por ID
-GET http://localhost:7000/respaldos/1
+GET http://localhost:5000/respaldos/1
 
 ### Restaurar respaldo
-POST http://localhost:7000/respaldos/restaurar
+POST http://localhost:5000/respaldos/restaurar
 Content-Type: application/json
 
 {

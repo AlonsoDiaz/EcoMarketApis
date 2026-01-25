@@ -10,6 +10,6 @@ public class WebClientConfig {
 
     @Bean
     public WebClient tiendaWebClient(){
-         return WebClient.builder().baseUrl("http://localhost:1000/tiendas").build();
+         return WebClient.builder().baseUrl("http://tienda.us-east-1.elasticbeanstalk.com/tiendas").build();
     }
 }

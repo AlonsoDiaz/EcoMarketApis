@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:2000
+@baseUrl = http://apienvios.us-west-2.elasticbeanstalk.com
 
 ### Listar envios
 GET {{baseUrl}}/envio
@@ -11,7 +11,7 @@ POST {{baseUrl}}/envio
 Content-Type: application/json
 
 {
-	"cliente": "Juan Perez",
+	"cliente": "Juan Perezzzzzzzzz",
 	"destino": "Sucursal Centro",
 	"direccionEntrega": "Av. Principal 123",
 	"idTienda": 1,

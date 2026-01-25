@@ -1,32 +1,32 @@
 ### Listar todas las tiendas
-GET http://localhost:1000/tiendas
+GET http://tienda.us-east-1.elasticbeanstalk.com/
 Accept: application/json
 
 ### Obtener tienda por id
-GET http://localhost:1000/tiendas/1
+GET http://tienda.us-east-1.elasticbeanstalk.com/
 Accept: application/json
 
 ### Crear tienda
-POST http://localhost:1000/tiendas
+POST http://tienda.us-east-1.elasticbeanstalk.com/
 Content-Type: application/json
 
 {
-	"horarioApertura": "08:00-18:00",
-	"personalAsignado": "Equipo A",
-	"politicasLocales": "Uso obligatorio de bolsas reciclables"
+    "horarioApertura": "08:00-18:00",
+    "personalAsignado": "Equipo A",
+    "politicasLocales": "Uso obligatorio de bolsas reciclables"
 }
 
 ### Actualizar tienda
-PUT http://localhost:1000/tiendas
+PUT http://tienda.us-east-1.elasticbeanstalk.com/
 Content-Type: application/json
 
 {
-	"idTienda": 1,
-	"horarioApertura": "09:00-19:00",
-	"personalAsignado": "Equipo B",
-	"politicasLocales": "Promoción de productos locales"
+    "id": 1,
+    "horarioApertura": "09:00-19:00",
+    "personalAsignado": "Equipo B",
+    "politicasLocales": "Promoción de productos locales"
 }
 
 ### Eliminar tienda
-DELETE http://localhost:1000/tiendas/1
+DELETE http://tienda.us-east-1.elasticbeanstalk.com/
 Accept: application/json

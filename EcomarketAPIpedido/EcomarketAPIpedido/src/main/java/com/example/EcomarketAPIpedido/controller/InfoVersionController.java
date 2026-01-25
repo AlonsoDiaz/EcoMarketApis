@@ -20,7 +20,7 @@ public class InfoVersionController {
     @Value("${app.version}")
     private String version;
 
-    @GetMapping("")
+    @GetMapping("/version")
     public InfoVersion info(){
         return new InfoVersion(appName,version);
     }

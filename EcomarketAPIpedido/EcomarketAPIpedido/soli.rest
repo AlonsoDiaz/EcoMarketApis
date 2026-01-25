@@ -1,13 +1,13 @@
 ### Listar todos los pedidos
-GET http://localhost:3000/pedidos
+GET http://pedido.us-east-1.elasticbeanstalk.com/
 Accept: application/json
 
 ### Obtener pedido por id
-GET http://localhost:3000/pedidos/1
+GET http://pedido.us-east-1.elasticbeanstalk.com/
 Accept: application/json
 
 ### Crear pedido
-POST http://localhost:3000/pedidos
+POST http://pedido.us-east-1.elasticbeanstalk.com/
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Actualizar pedido
-PUT http://localhost:3000/pedidos
+PUT http://pedido.us-east-1.elasticbeanstalk.com/
 Content-Type: application/json
 
 {
@@ -28,5 +28,5 @@ Content-Type: application/json
 }
 
 ### Eliminar pedido
-DELETE http://localhost:3000/pedidos/1
+DELETE http://pedido.us-east-1.elasticbeanstalk.com/
 Accept: application/json

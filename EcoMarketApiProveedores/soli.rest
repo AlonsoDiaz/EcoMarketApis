@@ -1,11 +1,11 @@
 ### Obtener todos los proveedores
-GET http://localhost:9000/proveedor
+GET http://apiproveedores.us-west-2.elasticbeanstalk.com/proveedor
 
 ### Obtener proveedor por id
-GET http://localhost:9000/proveedor/1
+GET http://localhost:5000/proveedor/1
 
 ### Crear proveedor
-POST http://localhost:9000/proveedor
+POST http://localhost:5000/proveedor
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Actualizar proveedor
-PUT http://localhost:9000/proveedor
+PUT http://localhost:5000/proveedor
 Content-Type: application/json
 
 {
@@ -38,4 +38,4 @@ Content-Type: application/json
 }
 
 ### Eliminar proveedor
-DELETE http://localhost:9000/proveedor/1
+DELETE http://localhost:5000/proveedor/1

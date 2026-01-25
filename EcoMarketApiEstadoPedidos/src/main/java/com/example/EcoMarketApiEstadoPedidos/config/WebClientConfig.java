@@ -11,12 +11,12 @@ public class WebClientConfig {
     @Bean
     @Qualifier("enviosWebClient")
     public WebClient enviosWebClient() {
-        return WebClient.builder().baseUrl("http://localhost:2000/envio").build();
+        return WebClient.builder().baseUrl("http://apienvios.us-west-2.elasticbeanstalk.com/envio").build();
     }
 
     @Bean
     @Qualifier("pedidosWebClient")
     public WebClient pedidosWebClient() {
-        return WebClient.builder().baseUrl("http://localhost:3000/pedidos").build();
+        return WebClient.builder().baseUrl("http://pedido.us-east-1.elasticbeanstalk.com/pedidos").build();
     }
 }

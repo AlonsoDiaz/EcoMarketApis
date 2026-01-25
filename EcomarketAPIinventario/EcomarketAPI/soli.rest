@@ -1,33 +1,34 @@
-@baseUrl = http://localhost:4000
-
 ### Listar inventarios
-GET {{baseUrl}}/inventario
+GET http://ecomarket-inventario.us-east-1.elasticbeanstalk.com/
+Accept: application/json
 
 ### Obtener inventario por id
-GET {{baseUrl}}/inventario/1
+GET http://ecomarket-inventario.us-east-1.elasticbeanstalk.com/
+Accept: application/json
 
 ### Crear inventario
-POST {{baseUrl}}/inventario
+POST http://ecomarket-inventario.us-east-1.elasticbeanstalk.com/
 Content-Type: application/json
 
 {
-	"nombreProducto": "Producto A",
-	"cantidadStock": 100,
-	"precio": 50.0,
-	"categoria": "Electrónica"
+    "nombreProducto": "Producto A",
+    "cantidadStock": 100,
+    "precio": 50.0,
+    "categoria": "Electrónica"
 }
 
 ### Actualizar inventario
-PUT {{baseUrl}}/inventario
+PUT http://ecomarket-inventario.us-east-1.elasticbeanstalk.com/
 Content-Type: application/json
 
 {
-	"idProducto": 1,
-	"nombreProducto": "Producto A Actualizado",
-	"cantidadStock": 150,
-	"precio": 55.0,
-	"categoria": "Electrónica"
+    "id": 1,
+    "nombreProducto": "Producto A Actualizado",
+    "cantidadStock": 150,
+    "precio": 55.0,
+    "categoria": "Electrónica"
 }
 
 ### Eliminar inventario
-DELETE {{baseUrl}}/inventario/1
+DELETE http://ecomarket-inventario.us-east-1.elasticbeanstalk.com/
+Accept: application/json
